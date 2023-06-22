@@ -9,6 +9,7 @@
         <v-text-field
             outlined
             dense
+            color="green"
             hide-details
             v-bind="attrs"
             v-on="on"
@@ -18,12 +19,13 @@
         ></v-text-field>
       </template>
 
-      <v-list>
+      <v-list height="500" class="overflow-auto">
         <v-list-item
-            v-for="(item, index) in filteredItems"
-            :key="index"
+            v-for="item in filteredItems"
+            :key="item"
+            dense
         >
-          <v-checkbox :value="{item}" :label="item" v-model="selectedCountries"></v-checkbox>
+          <v-checkbox color="green" hide-details :label="item" :value="item" v-model="value"></v-checkbox>
         </v-list-item>
       </v-list>
     </v-menu>
@@ -36,21 +38,48 @@ export default {
   name: "DropdownSearch",
   data ()  {
     return {
-      items : [
+      countries : [
         "Австрия",
         "Азербайджан",
         "Австралия",
-        "Армения",
+        "Греция",
+        "Россия",
+        "Украина",
+        "Америка",
+        "Франция",
+        "Египет",
+        "Турция",
+        "Шри-Ланка",
+        "Бали",
+        "Германия",
+        "Шведция",
+        "Грузия",
+        "Китай",
+        "Япония",
+        "Чехия",
+        "Испания",
+        "Бразлия",
+        "Канада",
       ],
       search : '',
       selectedCountries : [],
     }
   },
+  props: ['modelValue'],
+  emits: ['update:modelValue'],
   computed : {
     filteredItems() {
-      return this.items.filter(items => items.includes(this.search))
+      return this.countries.filter(items => items.toLowerCase().includes(this.search.toLowerCase()))
+    },
+    value: {
+      get() {
+        return this.modelValue
+      },
+      set(value) {
+        this.$emit('update:modelValue', value)
+      }
     }
-  }
+  },
 }
 </script>
 

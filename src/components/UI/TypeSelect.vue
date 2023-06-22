@@ -7,7 +7,9 @@
         dense
         multiple
         hide-details
-        v-model="selectedTypes"
+        v-model="value"
+        item-color="green"
+        color="green"
         outlined
     ></v-select>
   </div>
@@ -25,7 +27,19 @@ export default {
       ],
       selectedTypes : []
     }
-}
+  },
+  props: ['modelValue'],
+  emits: ['update:modelValue'],
+  computed : {
+    value: {
+      get() {
+        return this.modelValue
+      },
+      set(value) {
+        this.$emit('update:modelValue', value)
+      }
+    }
+  }
 }
 </script>
 

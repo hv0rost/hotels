@@ -1,6 +1,6 @@
 <template>
-  <v-app >
-    <DrawerComponent />
+  <v-app>
+      <DrawerComponent />
     <v-main>
       <HotelList />
     </v-main>

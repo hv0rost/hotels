@@ -7,8 +7,9 @@
           dense
           hide-details
           placeholder="От 0 ₽"
+          color="green"
           class="pr-4"
-          v-model="cost[0]">
+          v-model="value[0]">
       </v-text-field>
 
       <div style="color: lightgray"> — </div>
@@ -18,12 +19,13 @@
           dense
           hide-details
           placeholder="До 100 500 ₽"
+          color="green"
           class="pl-4"
-          v-model="cost[1]">
+          v-model="value[1]">
       </v-text-field>
     </div>
     <v-range-slider
-        v-model="cost"
+        v-model="value"
         :min="0"
         :max="100500"
         color="green"
@@ -31,6 +33,7 @@
         hide-details
         strict
     ></v-range-slider>
+
   </div>
 </template>
 
@@ -40,6 +43,18 @@ export default {
   data() {
     return {
       cost: [0, 100500]
+    }
+  },
+  props: ['modelValue'],
+  emits: ['update:modelValue'],
+  computed : {
+    value: {
+      get() {
+        return this.modelValue
+      },
+      set(value) {
+        this.$emit('update:modelValue', value)
+      }
     }
   }
 }

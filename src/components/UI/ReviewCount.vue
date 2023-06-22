@@ -6,18 +6,26 @@
         dense
         hide-details
         full-width
+        color="green"
         placeholder="Например, от 10"
-        v-model="reviews">
+        v-model="value">
     </v-text-field>
   </div>
 </template>
 
 <script>
 export default {
-  name: "RewiewCount",
-  data() {
-    return {
-      reviews : ''
+  name: "ReviewCount",
+  props: ['modelValue'],
+  emits: ['update:modelValue'],
+  computed : {
+    value: {
+      get() {
+        return this.modelValue
+      },
+      set(value) {
+        this.$emit('update:modelValue', value)
+      }
     }
   }
 }
