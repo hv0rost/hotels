@@ -34,5 +34,7 @@ export default {
   border : 1px solid lightgray;
 
 }
-
+.v-input {
+  margin: 10px;
+}
 </style>

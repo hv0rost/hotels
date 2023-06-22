@@ -8,6 +8,7 @@
         full-width
         color="green"
         placeholder="Например, от 10"
+        :rules="[rules.numbers]"
         v-model="value">
     </v-text-field>
   </div>
@@ -18,6 +19,16 @@ export default {
   name: "ReviewCount",
   props: ['modelValue'],
   emits: ['update:modelValue'],
+  data () {
+    return {
+      rules: {
+        numbers: value => {
+          const pattern = /^\d+$/
+          return pattern.test(value)
+        },
+      }
+    }
+  },
   computed : {
     value: {
       get() {

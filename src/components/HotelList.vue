@@ -53,14 +53,14 @@
         </v-card-text>
       </v-card>
     </div>
-    <div class="text-center" v-if="hotelList.length > 0">
+    <div class="text-center" v-if="filteredHotels.length > 3">
       <v-pagination
           color="green"
           v-model="page"
-          :length="hotels.length % 3"
+          :length="Math.ceil(filteredHotels.length / 3)"
       ></v-pagination>
     </div>
-    <div v-if="hotels.length === 0">
+    <div v-if="hotelList.length === 0">
       <v-card
           class="my-12"
           elevation="0"
@@ -97,32 +97,33 @@ export default {
   data () {
     return {
       hotels : {},
-      pageCount : 0,
       page : 1,
       hotelIndex : 0
     }
   },
   async created() {
     this.hotels = json.hotels
-    //this.hotels = []
-    this.pageCount = this.hotels.length % 3
+    this.$store.commit('setHotels', this.hotels)
   },
   computed : {
-    reviews () {
-      return this.hotels.reviews_amount
-    },
     hotelList () {
-      return this.hotels.slice(this.hotelIndex, this.page * 3)
+      if (this.filteredHotels.length > 0) {
+        return this.filteredHotels.slice(this.hotelIndex, this.page * 3)
+      }
+      return []
     },
+    filteredHotels() {
+      return this.$store.getters.getHotels
+    }
   },
   watch : {
     page() {
       this.hotelIndex = (this.page - 1) * 3;
-    }
+    },
   },
   methods : {
     resetFilter() {
-      this.$store.commit('setFilter', {
+      this.$store.commit('resetFilter', {
         countries : [],
         types : [],
         ratings : [],
