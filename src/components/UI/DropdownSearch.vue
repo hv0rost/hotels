@@ -71,6 +71,9 @@ export default {
     filteredItems() {
       return this.countries.filter(items => items.toLowerCase().includes(this.search.toLowerCase()))
     },
+    filter () {
+      return this.$store.getters.getFilter
+    },
     value: {
       get() {
         return this.modelValue
@@ -80,6 +83,11 @@ export default {
       }
     }
   },
+  watch : {
+    filter() {
+      this.search = ''
+    }
+  }
 }
 </script>
 

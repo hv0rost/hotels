@@ -4,7 +4,6 @@
     <v-text-field
         outlined
         dense
-        hide-details
         full-width
         color="green"
         placeholder="Например, от 10"
@@ -23,8 +22,11 @@ export default {
     return {
       rules: {
         numbers: value => {
-          const pattern = /^\d+$/
-          return pattern.test(value)
+          if (value.length > 0) {
+            const pattern = /^\d+$/
+            return pattern.test(value)
+          }
+          return true
         },
       }
     }

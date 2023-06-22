@@ -2,16 +2,20 @@
   <div class="ma-4">
     <div v-for="(hotel, index) in hotelList" v-bind:key="index">
       <v-card
-          class="mx-auto my-12"
-          elevation="0"
+          class="mx-auto my-8 pt-4 pb-5"
+          max-width="1300"
+          outlined
+          rounded="lg"
+          flat
+
       >
-        <v-card-title class="pa-2 pl-4">{{ hotel.name }}</v-card-title>
+        <v-card-title class="pt-0 pl-4">{{ hotel.name }}</v-card-title>
         <v-card-text>
           <v-row
               align="center"
               class="mx-0"
           >
-            <v-col cols="8">
+            <v-col cols="9">
               <v-row >
                 <v-rating
                     :value="hotel.rating"
@@ -31,11 +35,11 @@
                 </div>
               </v-row>
             </v-col>
-            <v-col>
-              <div class="ml-8">
-                <div class="text-h5 font-weight-bold black--text"> {{ hotel.min_price }} ₽</div>
-                <div class="caption">Цена за 1 ночь</div>
-
+            <v-col cols="1"></v-col>
+            <v-col cols="2">
+              <div class="d-flex flex-column align-end">
+                <div class="text-h4 font-weight-bold black--text "> {{ hotel.min_price }} ₽</div>
+                <div class="caption pb-4">Цена за 1 ночь</div>
               </div>
 
               <v-btn elevation="0" color="lightgrey" v-if="!hotels[index].booked" @click="hotels[index].booked = !hotels[index].booked">
@@ -64,6 +68,7 @@
       <v-card
           class="my-12"
           elevation="0"
+          width="1200"
       >
         <v-card-title class="justify-center pa-2 pl-4">
           <v-img
