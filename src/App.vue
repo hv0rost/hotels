@@ -1,9 +1,9 @@
 <template>
   <v-app>
+    <div class="d-flex flex-row">
       <DrawerComponent />
-    <v-main>
       <HotelList />
-    </v-main>
+    </div>
   </v-app>
 </template>
 

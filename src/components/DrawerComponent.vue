@@ -1,14 +1,14 @@
 <template>
-  <v-navigation-drawer app width="400">
+  <div class="menu">
     <DropdownSearch :modelValue="storedFilter.countries" @update:modelValue="newValue => this.storedFilter.countries = newValue"/>
     <TypeSelect :modelValue="storedFilter.types" @update:modelValue="newValue => this.storedFilter.types = newValue"/>
     <RatingGroup :modelValue="storedFilter.stars" @update:modelValue="newValue => this.storedFilter.stars = newValue"/>
     <ReviewCount :modelValue="storedFilter.reviews" @update:modelValue="newValue => this.storedFilter.reviews = newValue"/>
     <CostInput :modelValue="storedFilter.cost" @update:modelValue="newValue => this.storedFilter.cost = newValue"/>
 
-    <v-btn color="deep-purple" rounded class="white--text ml-4 mb-4 mt-4" height="45" width="365" @click="setFilter()">Применить фильтр</v-btn>
-    <v-btn elevation="0" height="45" rounded class="ml-4 black--text" width="365" @click="resetFilter"> <v-icon>mdi-close</v-icon> Очистить фильтр</v-btn>
-  </v-navigation-drawer>
+    <v-btn color="deep-purple" rounded class="white--text ma-4" height="45" width="350" @click="setFilter()">Применить фильтр</v-btn>
+    <v-btn elevation="0" height="45" rounded class="ml-4 black--text" width="350" @click="resetFilter"> <v-icon>mdi-close</v-icon> Очистить фильтр</v-btn>
+  </div>
 </template>
 
 <script>
@@ -54,5 +54,7 @@ export default {
 </script>
 
 <style scoped>
-
+.menu {
+  width: 400px;
+}
 </style>
