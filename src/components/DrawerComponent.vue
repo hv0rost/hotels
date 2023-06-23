@@ -55,6 +55,6 @@ export default {
 
 <style scoped>
 .menu {
-  width: 500px;
+  width: 430px;
 }
 </style>
